@@ -1,0 +1,55 @@
+﻿@model AssetTrackingSystem.Models.Organization
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="form_my_style">
+        <div class="alert alert-success">
+            @if (ViewBag.Message != null)
+            {
+                <strong>@ViewBag.Message</strong>
+            }
+
+        </div>
+        @using (Html.BeginForm("Create", "Organization", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <h2>Organization Setup</h2>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, new { @class = "col-sm-4 control-label" })
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.Name, new { @placeholder = "Name", @class = "form-control", autofocus = true })
+                    <span class="help-block">Last Name, First Name, eg.: Smith, Harry</span>
+                    @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ShortName, new { @class = "col-sm-4 control-label" })
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.ShortName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ShortName,null,new{@class="text-danger"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Location, new { @class = "col-sm-4 control-label" })
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-4">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+            </div>
+        }
+    </div>
+
+
+</div> <!-- ./container -->
+@section scripts
+{
+    <script type="text/javascript" src="habijabi.js"></script>
+}

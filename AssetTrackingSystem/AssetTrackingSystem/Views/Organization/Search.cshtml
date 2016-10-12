@@ -1,0 +1,72 @@
+﻿@using AssetTrackingSystem.Models
+@model IEnumerable<AssetTrackingSystem.Models.Organization>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Search</title>
+</head>
+<body>
+<div>
+    <p>
+        Search Result(s)
+    </p>
+    <p>
+        <a href="@Url.Action("Create", "Organization")">Create</a>
+    </p>
+
+    <form action="Search" method="POST">
+        <p>
+            ShortName: <input type="text" name="ShortName" id="Code"/>
+        </p>
+
+        <p>
+            <input type="submit" value="Show"/>
+        </p>
+    </form>
+    @if (Model != null && Model.Any())
+    {
+        <table border="1">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    Location
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (Organization organization in Model)
+            {
+                <tr>
+                    <td>
+                        @organization.Name
+                    </td>
+                    <td>
+                        @organization.ShortName
+                    </td>
+                    <td>
+                        @organization.Location
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+
+        </table>
+    }
+</div>
+</body>
+</html>
+
+
